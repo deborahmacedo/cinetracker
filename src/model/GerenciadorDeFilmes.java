@@ -1,8 +1,10 @@
 package cinetracker.model;
 
-import
+import java.util.Arrays
 
 public class GerenciadorDeFilmes {
+
+    filmes <>
     //add
 
     //remover

@@ -22,6 +22,20 @@ public class Filme {
 
     private nota;
 
+    private StatusFilme status;
 
+    public StatusFilme getStatus() {
+        return status;
+    }
 
+    public void setStatus(StatusFilme status) {
+        this.status = status;
+    }
+
+    //construtor
+    public Filme(String titulo, int nota, StatusFilme status) {
+        this.titulo = titulo;
+        this.nota = nota;
+        this.status = status;
+    }
 }
