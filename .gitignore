@@ -27,3 +27,11 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Arquivos e pastas de IDEs
+.idea/
+*.iml
+out/
+# Se você usar Maven ou Gradle
+target/
+build/
