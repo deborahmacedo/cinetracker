@@ -1,3 +1,5 @@
+package model;
+
 public class Filme {
 
     public String getTitulo() {
@@ -8,7 +10,7 @@ public class Filme {
         this.titulo = titulo;
     }
 
-    String titulo;
+    private String titulo;
 
     public double getNota() {
         return nota;
@@ -18,12 +20,7 @@ public class Filme {
         this.nota = nota;
     }
 
-    double nota;
-
-    public Enum status {
-        ASSISTIDO,
-        PARA_ASSISTIR;
-    }
+    private nota;
 
 
 
