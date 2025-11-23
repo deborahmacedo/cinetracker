@@ -1,6 +1,16 @@
-package model;
+ package model;
 
 public class Filme {
+
+    private String titulo;
+
+    private double nota;
+
+    private String id;
+
+    private StatusFilme status;
+
+    public String review;
 
     public String getTitulo() {
         return titulo;
@@ -10,8 +20,6 @@ public class Filme {
         this.titulo = titulo;
     }
 
-    private String titulo;
-
     public double getNota() {
         return nota;
     }
@@ -20,9 +28,20 @@ public class Filme {
         this.nota = nota;
     }
 
-    private nota;
+    public String getId() {
+        return id;
+    }
 
-    private StatusFilme status;
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
 
     public StatusFilme getStatus() {
         return status;
@@ -33,9 +52,13 @@ public class Filme {
     }
 
     //construtor
-    public Filme(String titulo, int nota, StatusFilme status) {
+    public Filme(String titulo, String id, double nota, StatusFilme status) {
         this.titulo = titulo;
+        this.id = id;
         this.nota = nota;
         this.status = status;
     }
+    // cons vazio para o json
+    public Filme() {}
+}
 }
