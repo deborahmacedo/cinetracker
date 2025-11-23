@@ -1,15 +1,50 @@
 package model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorDeFilmes {
     private List<Filme> filmes;
+    private static final String ARQUIVO_JSON = "meus_filmes.json";
+    private final Gson gson; // converter JSON
+
     // construtor
     public GerenciadorDeFilmes() {
-        this.filmes = new ArrayList<>();
+        this.gson = new GsonBuilder().setPrettyPrinting().create();
+        this.filmes = carregarDados(); // Carrega ao iniciar
     }
+    private List<Filme> carregarDados() {
+        File arquivo = new File(ARQUIVO_JSON);
+        if (!arquivo.exists()) return new ArrayList<>(); // verifica se o arquivo existe
 
+        try (Reader reader = new FileReader(ARQUIVO_JSON)) {
+            Type listType = new TypeToken<ArrayList<Filme>>(){}.getType();
+            List<Filme> dados = gson.fromJson(reader, listType);
+
+            // Substituindo o operador ternário por if
+            if (dados != null) {
+                return dados;
+            } else {
+                return new ArrayList<>();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    private void salvarDados() {
+        try (Writer writer = new FileWriter(ARQUIVO_JSON)) {
+            gson.toJson(filmes, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     // listar todos os filmes
     public List<Filme> listarFilmes() {
         return new ArrayList<>(filmes); // retorna a cópia da lista original de filmes
@@ -26,9 +61,11 @@ public class GerenciadorDeFilmes {
     }
     public void adicionarFilme(Filme filme) {
         filmes.add(filme);
+        salvarDados();
     }
     public void removerFilme(Filme filme) {
         filmes.remove(filme);
+        salvarDados();
     }
 
     public boolean editarFilme(String id, String novoTitulo, double novaNota, String novaReview, StatusFilme novoStatus) {
@@ -40,6 +77,7 @@ public class GerenciadorDeFilmes {
                 if (novaReview != null) f.setReview(novaReview);
                 if (novoStatus != null) f.setStatus(novoStatus);
 
+                salvarDados();
                 return true;
             }
         }
@@ -53,6 +91,7 @@ public class GerenciadorDeFilmes {
                 } else {
                     f.setStatus(StatusFilme.PARA_ASSISTIR); // muda o status para 'para_assistir'
                 }
+                salvarDados();
                 return true;
             }
         }
