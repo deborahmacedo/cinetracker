@@ -1,4 +1,4 @@
- package model;
+package model;
 
 public class Filme {
 
@@ -35,6 +35,7 @@ public class Filme {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getReview() {
         return review;
     }
@@ -56,9 +57,3 @@ public class Filme {
         this.titulo = titulo;
         this.id = id;
         this.nota = nota;
-        this.status = status;
-    }
-    // cons vazio para o json
-    public Filme() {}
-}
-}
