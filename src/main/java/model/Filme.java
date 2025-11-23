@@ -35,6 +35,7 @@ public class Filme {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getReview() {
         return review;
     }
@@ -60,5 +61,5 @@ public class Filme {
     }
     // cons vazio para o json
     public Filme() {}
-}
+
 }
