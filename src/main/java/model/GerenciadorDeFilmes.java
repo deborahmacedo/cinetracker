@@ -38,10 +38,11 @@ public class GerenciadorDeFilmes {
             return new ArrayList<>();
         }
     }
+    // salva a lista filmes em um arquivo JSON
     private void salvarDados() {
-        try (Writer writer = new FileWriter(ARQUIVO_JSON)) {
-            gson.toJson(filmes, writer);
-        } catch (IOException e) {
+        try (Writer writer = new FileWriter(ARQUIVO_JSON)) { // abre um FileWriter apontando para o arquivo em ARQUIVO_JSON
+            gson.toJson(filmes, writer); // objeto gson serializa a lista filmes para JSON e escreve direto no arquivo
+        } catch (IOException e) { // se algo falhar ao acessar o arquivo imprime o erro
             e.printStackTrace();
         }
     }
@@ -70,17 +71,13 @@ public class GerenciadorDeFilmes {
 
     public boolean editarFilme(String id, String novoTitulo, double novaNota, String novaReview, StatusFilme novoStatus) {
         for (Filme f : filmes) {
-            if (f.getId().equals(id)) {
-                if (novoTitulo != null) f.setTitulo(novoTitulo);
-                double valor = 0.00; // consertar depois
-                if (novaNota == 0.00) f.setNota(novaNota);
-                if (novaReview != null) f.setReview(novaReview);
-                if (novoStatus != null) f.setStatus(novoStatus);
-
+            if (novoTitulo != null && !novoTitulo.isEmpty()) f.setTitulo(novoTitulo);
+            if (novaNota >= 0) f.setNota(novaNota);
+            if (novaReview != null) f.setReview(novaReview);
+            if (novoStatus != null) f.setStatus(novoStatus);
                 salvarDados();
                 return true;
             }
-        }
         return false;
     }
     public boolean marcarComoAssistido(String id, boolean assistido) {
