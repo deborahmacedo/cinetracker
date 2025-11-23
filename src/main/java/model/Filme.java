@@ -10,7 +10,7 @@ public class Filme {
 
     private StatusFilme status;
 
-    public String review;
+    private String review;
 
     public String getTitulo() {
         return titulo;
@@ -61,4 +61,8 @@ public class Filme {
     // cons vazio para o json
     public Filme() {}
 
+    @Override
+    public String toString() {
+        return titulo + " - " + nota + "★";
+    }
 }
