@@ -1,5 +1,6 @@
 package model;
 
+//GSON
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -16,10 +17,10 @@ public class GerenciadorDeFilmes {
     // construtor
     public GerenciadorDeFilmes() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
-        this.filmes = carregarDados(); // Carrega ao iniciar
+        this.filmes = carregarDados(); // carrega ao iniciar
     }
 
-    private List<Filme> carregarDados() {
+    private List<Filme> carregarDados() { // tentar recuperar os filmes salvos anteriormente
         File arquivo = new File(ARQUIVO_JSON);
         if (!arquivo.exists()) return new ArrayList<>(); // verifica se o arquivo existe
 
@@ -28,7 +29,6 @@ public class GerenciadorDeFilmes {
             }.getType();
             List<Filme> dados = gson.fromJson(reader, listType);
 
-            // Substituindo o operador ternário por if
             if (dados != null) {
                 return dados;
             } else {
@@ -78,8 +78,8 @@ public class GerenciadorDeFilmes {
 
     public boolean editarFilme(String id, String novoTitulo, double novaNota, String novaReview, StatusFilme novoStatus) {
         for (Filme f : filmes) {
-            if (f.getId().equals(id)) {
-                if (novoTitulo != null && !novoTitulo.isEmpty()) f.setTitulo(novoTitulo);
+            if (f.getId().equals(id)) { // compara o id
+                if (novoTitulo != null && !novoTitulo.isEmpty()) f.setTitulo(novoTitulo); // atualiza 
                 if (novaNota >= 0) f.setNota(novaNota);
                 if (novaReview != null) f.setReview(novaReview);
                 if (novoStatus != null) f.setStatus(novoStatus);
