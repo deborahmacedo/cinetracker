@@ -1,4 +1,5 @@
-package cinetracker.model;
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +31,13 @@ public class GerenciadorDeFilmes {
         filmes.remove(filme);
     }
 
-    public boolean editarFilme(String id, String novoTitulo, double novaNota, String novaDescricao, StatusFilme novoStatus) {
+    public boolean editarFilme(String id, String novoTitulo, double novaNota, String novaReview, StatusFilme novoStatus) {
         for (Filme f : filmes) {
             if (f.getId().equals(id)) {
                 if (novoTitulo != null) f.setTitulo(novoTitulo);
-                if (novaNota != null) f.setNota(novaNota);
-                if (novaDescricao != null) f.setDescricao(novaDescricao);
+                double valor = 0.00; // consertar depois
+                if (novaNota == 0.00) f.setNota(novaNota);
+                if (novaReview != null) f.setReview(novaReview);
                 if (novoStatus != null) f.setStatus(novoStatus);
 
                 return true;
