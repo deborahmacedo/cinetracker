@@ -1,6 +1,6 @@
-public class StatusFilme {
-    public Enum status {
-        ASSISTIDO,
-                PARA_ASSISTIR;
-    }
+package model;
+
+public enum StatusFilme {
+    ASSISTIDO,
+    PARA_ASSISTIR
 }
