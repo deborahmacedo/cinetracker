@@ -10,8 +10,6 @@ public class Filme {
 
     private StatusFilme status;
 
-    private String review;
-
     public String getTitulo() {
         return titulo;
     }
@@ -34,13 +32,6 @@ public class Filme {
 
     public void setId(String id) {
         this.id = id;
-    }
-    public String getReview() {
-        return review;
-    }
-
-    public void setReview(String review) {
-        this.review = review;
     }
 
     public StatusFilme getStatus() {
